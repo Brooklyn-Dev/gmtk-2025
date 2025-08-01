@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://j7l1p1g0xir3" path="res://scenes/player/trail_2d.gd" id="3_4kuee"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_524rm"]
-size = Vector2(16, 16)
+size = Vector2(8, 16)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_gfjak")
@@ -15,7 +15,6 @@ scale = Vector2(0.063, 0.125)
 texture = ExtResource("2_4kuee")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_524rm")
 
 [node name="Trail" type="Node2D" parent="."]

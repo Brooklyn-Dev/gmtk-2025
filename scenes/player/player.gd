@@ -7,15 +7,16 @@ extends CharacterBody2D
 
 @export var speed := 120.0
 @export var acceleration := 20.0
-@export var friction := 40.0
+@export var friction := 1000.0
 @export var air_control_factor := 0.5
 @export var max_fall_speed := 250.0
 
 @export var jump_force := 280.0
 @export var jump_cut_factor := 0.3
-@export var wall_jump_x_speed := 150.0
-@export var wall_jump_y_speed := 250.0
+@export var wall_jump_x_speed := 160.0
+@export var wall_jump_y_speed := 265.0
 @export var wall_jump_time := 0.1
+@export var wall_jump_control_factor := 0.05
 @export var max_wall_slide_speed := 80.0
 
 @export var coyote_time := 0.08
@@ -70,12 +71,18 @@ func _physics_process(delta):
 	
 	if wall_jump_timer > 0:
 		wall_jump_timer -= delta
+		control_factor *= wall_jump_control_factor
+	
+	var dir = Input.get_axis("move_left", "move_right")
+	
+	if dir != 0:
+		velocity.x = lerp(velocity.x, dir * speed, acceleration * control_factor * delta)
 	else:
-		var dir = Input.get_axis("move_left", "move_right")
-		if dir != 0:
-			velocity.x = lerp(velocity.x, dir * speed, acceleration * control_factor * delta)
-		else:
-			velocity.x = lerp(velocity.x, 0.0, friction * control_factor * delta)
+		var friction_force = friction * control_factor * delta
+		if velocity.x > 0:
+			velocity.x = max(0, velocity.x - friction_force)
+		elif velocity.x < 0:
+			velocity.x = min(0, velocity.x + friction_force)
 		
 	move_and_slide()
 
