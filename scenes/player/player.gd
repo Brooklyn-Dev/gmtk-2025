@@ -1,16 +1,30 @@
 extends CharacterBody2D
 
+@onready var ray_cast_lt := $RayCastLT
+@onready var ray_cast_rt := $RayCastRT
+@onready var ray_cast_lb := $RayCastLB
+@onready var ray_cast_rb := $RayCastRB
+
 @export var speed := 120.0
 @export var acceleration := 20.0
-@export var friction := 32.0
-@export var air_control_factor := 0.7
+@export var friction := 40.0
+@export var air_control_factor := 0.5
+@export var max_fall_speed := 250.0
+
 @export var jump_force := 280.0
 @export var jump_cut_factor := 0.3
-@export var coyote_time := 0.1
+@export var wall_jump_x_speed := 150.0
+@export var wall_jump_y_speed := 250.0
+@export var wall_jump_time := 0.1
+@export var max_wall_slide_speed := 80.0
+
+@export var coyote_time := 0.08
 @export var jump_buffer_time := 0.1
-@export var max_fall_speed := 400.0
+
 @export var hang_gravity_factor := 0.5
 @export var hang_velocity_threshold := 50.0
+
+var wall_jump_timer := 0.0
 
 var coyote_timer := 0.0
 var jump_buffer_timer := 0.0
@@ -18,19 +32,25 @@ var jump_buffer_timer := 0.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _physics_process(delta):
-	var control_factor = 1.0
+	var control_factor := 1.0
 	var gravity_scale = gravity
 	
 	if is_on_floor():
 		coyote_timer = coyote_time
-		control_factor = air_control_factor
 	else:
 		coyote_timer -= delta
+		control_factor = air_control_factor
 		if abs(velocity.y) < hang_velocity_threshold:
 			gravity_scale = gravity * hang_gravity_factor
 	
 	velocity.y += gravity_scale * delta
-	velocity.y = min(velocity.y, max_fall_speed)
+	if is_on_wall_only():
+		velocity.y = min(velocity.y, max_wall_slide_speed)
+	else:
+		velocity.y = min(velocity.y, max_fall_speed)
+	
+	var near_wall_left = ray_cast_lb.is_colliding() or ray_cast_lt.is_colliding()
+	var near_wall_right = ray_cast_rb.is_colliding() or ray_cast_rt.is_colliding()
 	
 	if Input.is_action_just_pressed("jump"):
 		jump_buffer_timer = jump_buffer_time
@@ -40,15 +60,36 @@ func _physics_process(delta):
 	if Input.is_action_just_released("jump") and velocity.y < 0:
 		velocity.y *= jump_cut_factor
 	
-	if jump_buffer_timer > 0.0 and coyote_timer > 0.0:
-		jump_buffer_timer = 0.0
-		coyote_timer = 0.0
-		velocity.y = -jump_force
+	if jump_buffer_timer > 0.0:
+		if coyote_timer > 0.0:
+			jump()
+		elif near_wall_left:
+			wall_jump(1)
+		elif near_wall_right:
+			wall_jump(-1)
 	
-	var dir = Input.get_axis("move_left", "move_right")
-	if dir != 0:
-		velocity.x = lerp(velocity.x, dir * speed, acceleration * control_factor * delta)
+	if wall_jump_timer > 0:
+		wall_jump_timer -= delta
 	else:
-		velocity.x = lerp(velocity.x, 0.0, friction * control_factor * delta)
-	
+		var dir = Input.get_axis("move_left", "move_right")
+		if dir != 0:
+			velocity.x = lerp(velocity.x, dir * speed, acceleration * control_factor * delta)
+		else:
+			velocity.x = lerp(velocity.x, 0.0, friction * control_factor * delta)
+		
 	move_and_slide()
+
+func jump():
+	jump_buffer_timer = 0.0
+	coyote_timer = 0.0
+	velocity.y = -jump_force
+
+# wall_dir: +1 for left, -1 for right
+func wall_jump(wall_dir: int):
+	jump_buffer_timer = 0.0
+	coyote_timer = 0.0
+	
+	velocity.x = wall_jump_x_speed * wall_dir
+	velocity.y = -wall_jump_y_speed
+	
+	wall_jump_timer = wall_jump_time

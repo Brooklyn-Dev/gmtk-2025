@@ -26,3 +26,19 @@ position = Vector2(0, 6)
 show_behind_parent = true
 width = 2.0
 script = ExtResource("3_4kuee")
+
+[node name="RayCastLT" type="RayCast2D" parent="."]
+position = Vector2(-4, -6)
+target_position = Vector2(-2, 0)
+
+[node name="RayCastRT" type="RayCast2D" parent="."]
+position = Vector2(4, -6)
+target_position = Vector2(2, 0)
+
+[node name="RayCastLB" type="RayCast2D" parent="."]
+position = Vector2(-4, 6)
+target_position = Vector2(-2, 0)
+
+[node name="RayCastRB" type="RayCast2D" parent="."]
+position = Vector2(4, 6)
+target_position = Vector2(2, 0)
