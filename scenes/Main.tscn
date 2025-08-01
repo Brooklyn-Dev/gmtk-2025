@@ -10,15 +10,37 @@ size = Vector2(16, 16)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -32)
-zoom = Vector2(2, 2)
+zoom = Vector2(3, 3)
 
 [node name="Player" parent="." instance=ExtResource("1_elqb8")]
 position = Vector2(0, -8)
 
+[node name="Platform4" type="StaticBody2D" parent="."]
+position = Vector2(80, -76)
+scale = Vector2(10, 0.5)
+skew = -3.5882e-05
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform4"]
+shape = SubResource("RectangleShape2D_rvslj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform4"]
+texture = ExtResource("2_rvslj")
+
+[node name="Platform3" type="StaticBody2D" parent="."]
+position = Vector2(-1, -36)
+scale = Vector2(10, 0.5)
+skew = -3.5882e-05
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform3"]
+shape = SubResource("RectangleShape2D_rvslj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform3"]
+texture = ExtResource("2_rvslj")
+
 [node name="Platform2" type="StaticBody2D" parent="."]
-position = Vector2(-226, -64)
+position = Vector2(-184, -24)
 rotation = 1.5708
-scale = Vector2(10, 1)
+scale = Vector2(3, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2"]
 shape = SubResource("RectangleShape2D_rvslj")
