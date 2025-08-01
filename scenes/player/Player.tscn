@@ -18,7 +18,11 @@ texture = ExtResource("2_4kuee")
 scale = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_524rm")
 
-[node name="Trail2D" type="Line2D" parent="."]
+[node name="Trail" type="Node2D" parent="."]
+show_behind_parent = true
+position = Vector2(0, 6)
+
+[node name="Trail2D" type="Line2D" parent="Trail"]
 show_behind_parent = true
 width = 2.0
 script = ExtResource("3_4kuee")
