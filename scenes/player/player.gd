@@ -6,17 +6,32 @@ extends CharacterBody2D
 @export var air_control_factor := 0.7
 @export var jump_force := 300.0
 @export var jump_cut_factor := 0.4
+@export var coyote_time := 0.1
+@export var jump_buffer_time := 0.1
+
+var coyote_timer := 0.0
+var jump_buffer_timer := 0.0
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _physics_process(delta):
-	if not is_on_floor():
+	if is_on_floor():
+		coyote_timer = coyote_time
+	else:
+		coyote_timer -= delta
 		velocity.y += gravity * delta
 	
+	if Input.is_action_just_pressed("jump"):
+		jump_buffer_timer = jump_buffer_time
+	else:
+		jump_buffer_timer -= delta
+		
 	if Input.is_action_just_released("jump") and velocity.y < 0:
 		velocity.y *= jump_cut_factor
 	
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if jump_buffer_timer > 0.0 and coyote_timer > 0.0:
+		jump_buffer_timer = 0.0
+		coyote_timer = 0.0
 		velocity.y = -jump_force
 	
 	var control_factor = 1.0 if is_on_floor() else air_control_factor
