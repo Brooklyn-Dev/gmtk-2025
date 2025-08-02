@@ -5,13 +5,13 @@ extends CharacterBody2D
 @onready var ray_cast_lb := $RayCastLB
 @onready var ray_cast_rb := $RayCastRB
 
-@export var speed := 120.0
+@export var speed := 100.0
 @export var acceleration := 20.0
 @export var friction := 1000.0
 @export var air_control_factor := 0.5
 @export var max_fall_speed := 250.0
 
-@export var jump_force := 280.0
+@export var jump_force := 270.0
 @export var jump_cut_factor := 0.3
 @export var wall_jump_x_speed := 160.0
 @export var wall_jump_y_speed := 265.0
@@ -63,11 +63,11 @@ func _physics_process(delta):
 	
 	if jump_buffer_timer > 0.0:
 		if coyote_timer > 0.0:
-			jump()
+			_jump()
 		elif near_wall_left:
-			wall_jump(1)
+			_wall_jump(1)
 		elif near_wall_right:
-			wall_jump(-1)
+			_wall_jump(-1)
 	
 	if wall_jump_timer > 0:
 		wall_jump_timer -= delta
@@ -86,13 +86,13 @@ func _physics_process(delta):
 		
 	move_and_slide()
 
-func jump():
+func _jump():
 	jump_buffer_timer = 0.0
 	coyote_timer = 0.0
 	velocity.y = -jump_force
 
 # wall_dir: +1 for left, -1 for right
-func wall_jump(wall_dir: int):
+func _wall_jump(wall_dir: int):
 	jump_buffer_timer = 0.0
 	coyote_timer = 0.0
 	
