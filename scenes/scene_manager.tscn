@@ -1,9 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://2x6nj2n0qkl4"]
+[gd_scene load_steps=8 format=3 uid="uid://2x6nj2n0qkl4"]
 
 [ext_resource type="Script" uid="uid://bdd0t4eblibqc" path="res://scripts/scene_manager.gd" id="1_we8k5"]
 [ext_resource type="PackedScene" uid="uid://bar25hfq36y8b" path="res://scenes/Menu.tscn" id="2_b81s6"]
-[ext_resource type="PackedScene" uid="uid://chvnn0vmn5e6k" path="res://scenes/Main.tscn" id="3_h7lqg"]
+[ext_resource type="PackedScene" uid="uid://chvnn0vmn5e6k" path="res://scenes/levels/Level1a.tscn" id="3_h7lqg"]
+[ext_resource type="PackedScene" uid="uid://cqypsujy4n3hq" path="res://scenes/levels/Level1b.tscn" id="4_h7lqg"]
+[ext_resource type="PackedScene" uid="uid://cdhsm0bfvlh43" path="res://scenes/levels/Level1c.tscn" id="5_q7wi7"]
+[ext_resource type="PackedScene" uid="uid://cfr6fmht64v2n" path="res://scenes/levels/Level1d.tscn" id="6_6k21d"]
+[ext_resource type="PackedScene" uid="uid://dlnhr0x713fpv" path="res://scenes/levels/Level1e.tscn" id="7_cjhpt"]
 
 [node name="SceneManager" type="Node"]
 script = ExtResource("1_we8k5")
-scenes = Array[PackedScene]([ExtResource("2_b81s6"), ExtResource("3_h7lqg")])
+scenes = Array[PackedScene]([ExtResource("2_b81s6"), ExtResource("7_cjhpt"), ExtResource("3_h7lqg"), ExtResource("4_h7lqg"), ExtResource("5_q7wi7"), ExtResource("6_6k21d")])

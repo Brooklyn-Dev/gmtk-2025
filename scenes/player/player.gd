@@ -7,19 +7,19 @@ extends CharacterBody2D
 
 @onready var collision_shape := $CollisionShape2D
 
-@export var speed := 100.0
+@export var speed := 90.0
 @export var acceleration := 20.0
 @export var friction := 1000.0
 @export var air_control_factor := 0.5
-@export var max_fall_speed := 250.0
+@export var max_fall_speed := 200.0
 
 @export var jump_force := 270.0
 @export var jump_cut_factor := 0.3
-@export var wall_jump_x_speed := 160.0
-@export var wall_jump_y_speed := 265.0
+@export var wall_jump_x_speed := 150.0
+@export var wall_jump_y_speed := 270.0
 @export var wall_jump_time := 0.1
-@export var wall_jump_control_factor := 0.05
-@export var max_wall_slide_speed := 80.0
+@export var wall_jump_control_factor := 0.2
+@export var max_wall_slide_speed := 60.0
 
 @export var coyote_time := 0.08
 @export var jump_buffer_time := 0.1
