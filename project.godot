@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="gmtk-2025"
-run/main_scene="uid://chvnn0vmn5e6k"
+run/main_scene="uid://bar25hfq36y8b"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SceneManager="*res://scenes/scene_manager.tscn"
 
 [dotnet]
 
@@ -43,4 +47,5 @@ jump={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
