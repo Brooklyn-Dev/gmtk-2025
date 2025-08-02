@@ -27,6 +27,10 @@ project/assembly_name="gmtk-2025"
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
+[global_group]
+
+Player=""
+
 [input]
 
 move_left={
