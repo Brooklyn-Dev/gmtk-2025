@@ -7,6 +7,10 @@ func _process(delta):
 	update_animation()
 
 func update_animation():
+	if player.is_dead:
+		anim_sprite.play("fall")
+		return
+	
 	if player.is_on_wall() and player.velocity.y > 0:
 		anim_sprite.play("slide")
 	elif not player.is_on_floor():

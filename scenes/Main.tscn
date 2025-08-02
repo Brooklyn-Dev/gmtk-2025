@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://chvnn0vmn5e6k"]
+[gd_scene load_steps=10 format=4 uid="uid://chvnn0vmn5e6k"]
 
 [ext_resource type="PackedScene" uid="uid://b8jg0t7n3srin" path="res://scenes/player/Player.tscn" id="1_elqb8"]
 [ext_resource type="Texture2D" uid="uid://i62qdqspk6ti" path="res://assets/main_tileset.png" id="1_rvslj"]
 [ext_resource type="Texture2D" uid="uid://dw43gk36yoffc" path="res://assets/main_infill_tileset.png" id="2_0bbpv"]
-[ext_resource type="PackedScene" uid="uid://cnpqt5bi80ant" path="res://scenes/crown.tscn" id="4_rarhs"]
+[ext_resource type="PackedScene" uid="uid://cnpqt5bi80ant" path="res://scenes/crown/crown.tscn" id="4_rarhs"]
+[ext_resource type="PackedScene" uid="uid://be7jf5m1a0tdc" path="res://scenes/spikes/spikes.tscn" id="5_vcsgt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0bbpv"]
 texture = ExtResource("1_rvslj")
@@ -181,3 +182,35 @@ position = Vector2(0, -8)
 
 [node name="Crown" parent="." instance=ExtResource("4_rarhs")]
 position = Vector2(0, -188)
+
+[node name="Spikes" type="Node2D" parent="."]
+
+[node name="Spikes" parent="Spikes" instance=ExtResource("5_vcsgt")]
+position = Vector2(92, -180)
+
+[node name="Spikes2" parent="Spikes" instance=ExtResource("5_vcsgt")]
+position = Vector2(84, -180)
+
+[node name="Spikes3" parent="Spikes" instance=ExtResource("5_vcsgt")]
+position = Vector2(76, -180)
+
+[node name="Spikes4" parent="Spikes" instance=ExtResource("5_vcsgt")]
+position = Vector2(68, -180)
+
+[node name="Spikes5" parent="Spikes" instance=ExtResource("5_vcsgt")]
+position = Vector2(60, -180)
+
+[node name="Spikes6" parent="Spikes" instance=ExtResource("5_vcsgt")]
+position = Vector2(-124, -4)
+
+[node name="Spikes7" parent="Spikes" instance=ExtResource("5_vcsgt")]
+position = Vector2(-132, -4)
+
+[node name="Spikes8" parent="Spikes" instance=ExtResource("5_vcsgt")]
+position = Vector2(-140, -4)
+
+[node name="Spikes9" parent="Spikes" instance=ExtResource("5_vcsgt")]
+position = Vector2(-148, -4)
+
+[node name="Spikes10" parent="Spikes" instance=ExtResource("5_vcsgt")]
+position = Vector2(-156, -4)

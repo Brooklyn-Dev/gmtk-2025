@@ -5,6 +5,8 @@ extends CharacterBody2D
 @onready var ray_cast_lb := $RayCastLB
 @onready var ray_cast_rb := $RayCastRB
 
+@onready var collision_shape := $CollisionShape2D
+
 @export var speed := 100.0
 @export var acceleration := 20.0
 @export var friction := 1000.0
@@ -30,9 +32,18 @@ var wall_jump_timer := 0.0
 var coyote_timer := 0.0
 var jump_buffer_timer := 0.0
 
+var is_dead := false
+var death_rotation_speed: float
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _physics_process(delta):
+	if is_dead:
+		velocity.y += gravity * delta
+		rotation_degrees += death_rotation_speed * delta
+		move_and_slide()
+		return
+	
 	var control_factor := 1.0
 	var gravity_scale = gravity
 	
@@ -100,3 +111,19 @@ func _wall_jump(wall_dir: int):
 	velocity.y = -wall_jump_y_speed
 	
 	wall_jump_timer = wall_jump_time
+
+func die():
+	if is_dead:
+		return
+	is_dead = true
+	
+	collision_layer = 0
+	collision_mask = 0
+	collision_shape.disabled = true
+	
+	velocity = Vector2(
+		randf_range(-300, 300),
+		randf_range(-600, -400)
+	)
+
+	death_rotation_speed = randf_range(400, 1000) * (1.0 if randf() > 0.5 else -1.0)

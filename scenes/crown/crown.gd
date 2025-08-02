@@ -14,5 +14,5 @@ func _process(delta):
 	global_position.y = initial_y + sin(accumulator) * range
 
 func _on_area_2d_body_entered(body):
-	if body.is_in_group("Player"):
+	if body.is_in_group("Player") and not body.is_dead:
 		SceneManager.goto_next_scene()
