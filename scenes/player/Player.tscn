@@ -1,10 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://b8jg0t7n3srin"]
+[gd_scene load_steps=19 format=3 uid="uid://b8jg0t7n3srin"]
 
 [ext_resource type="Script" uid="uid://yyljk42nd167" path="res://scenes/player/player.gd" id="1_gfjak"]
-[ext_resource type="AudioStream" uid="uid://bygi7j1pw00rr" path="res://assets/jump.wav" id="2_8qjgm"]
+[ext_resource type="AudioStream" uid="uid://bygi7j1pw00rr" path="res://assets/audio/jump.wav" id="2_8qjgm"]
 [ext_resource type="Texture2D" uid="uid://dwbl3jyyj4m06" path="res://assets/player/player_fall.png" id="2_20koh"]
 [ext_resource type="Script" uid="uid://dbiwru47u8mll" path="res://scenes/player/player_animator.gd" id="2_ov1oi"]
-[ext_resource type="AudioStream" uid="uid://c1yxt80d1j71u" path="res://assets/die.wav" id="2_rn7t0"]
+[ext_resource type="AudioStream" uid="uid://c1yxt80d1j71u" path="res://assets/audio/die.wav" id="2_rn7t0"]
 [ext_resource type="Script" uid="uid://j7l1p1g0xir3" path="res://scenes/player/trail_2d.gd" id="3_4kuee"]
 [ext_resource type="Texture2D" uid="uid://b36fxvnj0gsdc" path="res://assets/player/player_idle/player_idle_0.png" id="3_ov1oi"]
 [ext_resource type="Texture2D" uid="uid://bxooiqhqbcbef" path="res://assets/player/player_idle/player_idle_1.png" id="4_rn7t0"]
@@ -77,6 +77,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_524rm"]
 size = Vector2(8, 14)
 
+[sub_resource type="Curve" id="Curve_rn7t0"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_gfjak")
 jump_sfx = ExtResource("2_8qjgm")
@@ -107,7 +111,9 @@ position = Vector2(0, 6)
 show_behind_parent = true
 z_index = 99
 width = 1.5
+width_curve = SubResource("Curve_rn7t0")
 script = ExtResource("3_4kuee")
+length = 40
 
 [node name="RayCastLT" type="RayCast2D" parent="."]
 position = Vector2(-4, -6)

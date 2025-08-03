@@ -9,6 +9,9 @@ extends Control
 var current_panel_index = 0
 var selected_index := 0
 
+var is_muted := false
+var just_muted := false
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
@@ -18,10 +21,10 @@ func _ready():
 	update_button_focus()
 
 func _unhandled_input(event):
-	if event.is_action_pressed("ui_down"):
+	if event.is_action_pressed("ui_down") or event.is_action_pressed("ui_right"):
 		selected_index = (selected_index + 1) % get_current_buttons().size()
 		update_button_focus()
-	elif event.is_action_pressed("ui_up"):
+	elif event.is_action_pressed("ui_up") or event.is_action_pressed("ui_left"):
 		selected_index = (selected_index - 1) % get_current_buttons().size()
 		update_button_focus()
 	elif event.is_action_pressed("ui_accept"):
@@ -101,3 +104,11 @@ func _on_level_2d_button_pressed():
 
 func _on_level_2e_button_pressed():
 	SceneManager.goto_scene(SceneManager.scenes[10])
+
+func _on_toggle_sound_button_pressed():
+	if just_muted:
+		just_muted = false
+		return
+	is_muted = !is_muted
+	just_muted = true
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), is_muted)

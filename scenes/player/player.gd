@@ -160,7 +160,7 @@ func die():
 		randf_range(-400, -200)
 	)
 
-	death_rotation_speed = randf_range(400, 1000) * (1.0 if randf() > 0.5 else -1.0)
+	death_rotation_speed = randf_range(300, 600) * (1.0 if randf() > 0.5 else -1.0)
 	
 	SfxManager.play(death_sfx)
 	CameraManager.start_shake(4, 0.1)

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://xekxo3rd3v8l" path="res://scenes/crown/crown.gd" id="1_e4hp3"]
 [ext_resource type="Texture2D" uid="uid://btp8xcv1gmrif" path="res://assets/crown.png" id="1_qnh6f"]
-[ext_resource type="AudioStream" uid="uid://cu1p1tsxt0yba" path="res://assets/crown.wav" id="2_5bvsy"]
+[ext_resource type="AudioStream" uid="uid://cu1p1tsxt0yba" path="res://assets/audio/crown.wav" id="2_5bvsy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qnh6f"]
 size = Vector2(9, 4)

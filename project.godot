@@ -18,7 +18,7 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 
 SceneManager="*res://scenes/scene_manager.tscn"
 BeatManager="*res://scripts/beat_manager.gd"
-AudioManager="*res://scripts/music_manager.gd"
+MusicManager="*res://scripts/music_manager.gd"
 SfxManager="*res://scripts/sfx_manager.gd"
 CameraManager="*res://scripts/camera_manager.gd"
 

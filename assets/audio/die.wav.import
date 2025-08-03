@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://cu1p1tsxt0yba"
-path="res://.godot/imported/crown.wav-302746c1040d5faa27d6f5ddac82e9db.sample"
+uid="uid://c1yxt80d1j71u"
+path="res://.godot/imported/die.wav-087ffdeea77da2d281dd49bf11cf0272.sample"
 
 [deps]
 
-source_file="res://assets/crown.wav"
-dest_files=["res://.godot/imported/crown.wav-302746c1040d5faa27d6f5ddac82e9db.sample"]
+source_file="res://assets/audio/die.wav"
+dest_files=["res://.godot/imported/die.wav-087ffdeea77da2d281dd49bf11cf0272.sample"]
 
 [params]
 

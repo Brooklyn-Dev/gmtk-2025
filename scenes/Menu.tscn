@@ -1,7 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://bar25hfq36y8b"]
+[gd_scene load_steps=22 format=3 uid="uid://bar25hfq36y8b"]
 
 [ext_resource type="Script" uid="uid://7rcgov4neusu" path="res://scripts/menu.gd" id="1_xdvgc"]
 [ext_resource type="FontFile" uid="uid://xgto4s60tk2i" path="res://assets/m6x11.ttf" id="2_upctu"]
+[ext_resource type="Texture2D" uid="uid://btp8xcv1gmrif" path="res://assets/crown.png" id="3_11y2r"]
+[ext_resource type="Texture2D" uid="uid://56ybi6qbuvci" path="res://assets/Instructions.png" id="3_o0tnf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2af52"]
 
@@ -57,28 +59,65 @@ color = Color(0.0588235, 0.152941, 0.219608, 1)
 
 [node name="Title" type="RichTextLabel" parent="."]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -212.0
-offset_top = 73.0
-offset_right = 213.0
-offset_bottom = 146.0
+anchor_bottom = 0.5
+offset_left = -232.0
+offset_top = -251.0
+offset_right = 232.0
+offset_bottom = -167.0
 grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("2_upctu")
 theme_override_font_sizes/normal_font_size = 96
-text = "Crown Trial"
+text = "Crown Trials"
 fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Controls" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -449.0
+offset_top = -44.0
+offset_right = -267.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_upctu")
+theme_override_font_sizes/normal_font_size = 56
+text = "Controls"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Instructions" type="Sprite2D" parent="."]
+position = Vector2(216, 365)
+scale = Vector2(4, 4)
+texture = ExtResource("3_o0tnf")
+
+[node name="Crown" type="Sprite2D" parent="."]
+position = Vector2(358, 65)
+rotation = -0.261799
+scale = Vector2(6, 6)
+texture = ExtResource("3_11y2r")
+
 [node name="MainVBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
-offset_left = 514.0
+offset_left = 439.0
 offset_top = 233.0
-offset_right = 637.0
-offset_bottom = 415.0
+offset_right = 712.0
+offset_bottom = 547.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 16
@@ -121,6 +160,19 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_b6cxs")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_aaywf")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_upctu")
 text = "level 2"
+
+[node name="ToggleSoundButton" type="Button" parent="MainVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_focus_color = Color(0.984314, 0.87451, 0.419608, 1)
+theme_override_fonts/font = ExtResource("2_upctu")
+theme_override_font_sizes/font_size = 56
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rtd1e")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_o0tnf")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_jmdev")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_11y2r")
+text = "toggle sound"
 
 [node name="QuitButton" type="Button" parent="MainVBoxContainer"]
 layout_mode = 2
@@ -316,6 +368,7 @@ text = "back"
 [connection signal="pressed" from="MainVBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MainVBoxContainer/Level1Button" to="." method="_on_level_1_button_pressed"]
 [connection signal="pressed" from="MainVBoxContainer/Level2Button" to="." method="_on_level_2_button_pressed"]
+[connection signal="pressed" from="MainVBoxContainer/ToggleSoundButton" to="." method="_on_toggle_sound_button_pressed"]
 [connection signal="pressed" from="MainVBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Level1VBoxContainer/Level1aButton" to="." method="_on_level_1a_button_pressed"]
 [connection signal="pressed" from="Level1VBoxContainer/Level1bButton" to="." method="_on_level_1b_button_pressed"]

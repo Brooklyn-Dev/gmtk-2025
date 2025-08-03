@@ -11,6 +11,10 @@ func _ready():
 	var root = get_tree().root
 	current_scene = root.get_child(root.get_child_count() - 1)
 
+func _process(delta):
+	if Input.is_action_just_pressed("ui_cancel") and current_index != 0:
+		goto_scene(scenes[0])
+
 func goto_scene(scene: PackedScene):
 	call_deferred("_goto_scene", scene)
 
