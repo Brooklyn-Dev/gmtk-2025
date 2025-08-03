@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var ray_cast_rb := $RayCastRB
 
 @onready var collision_shape := $CollisionShape2D
+@onready var anim_sprite := $AnimatedSprite2D
 
 @export var jump_sfx: AudioStream
 @export var death_sfx: AudioStream
@@ -38,6 +39,12 @@ var jump_buffer_timer := 0.0
 var is_dead := false
 var death_rotation_speed: float
 
+var scale_speed := 15.0
+var squash_time := 0.08
+var squash_timer := 0.0
+
+var was_on_floor := false
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _process(delta):
@@ -45,6 +52,14 @@ func _process(delta):
 		die()
 		await get_tree().create_timer(1.5).timeout
 		SceneManager.restart_current_scene()
+	
+	if squash_timer > 0.0:
+		squash_timer -= delta
+	else:
+		anim_sprite.scale = anim_sprite.scale.lerp(Vector2.ONE, scale_speed * delta)
+	
+	if not was_on_floor and is_on_floor():
+		_squash(Vector2(1.2, 0.8))
 
 func _physics_process(delta):
 	if is_dead:
@@ -58,11 +73,13 @@ func _physics_process(delta):
 	
 	if is_on_floor():
 		coyote_timer = coyote_time
+		was_on_floor = true
 	else:
 		coyote_timer -= delta
 		control_factor = air_control_factor
 		if abs(velocity.y) < hang_velocity_threshold:
 			gravity_scale = gravity * hang_gravity_factor
+		was_on_floor = false
 	
 	velocity.y += gravity_scale * delta
 	if is_on_wall_only():
@@ -110,7 +127,9 @@ func _jump():
 	jump_buffer_timer = 0.0
 	coyote_timer = 0.0
 	velocity.y = -jump_force
+	
 	SfxManager.play(jump_sfx)
+	_squash(Vector2(1.2, 0.8))
 
 # wall_dir: +1 for left, -1 for right
 func _wall_jump(wall_dir: int):
@@ -122,6 +141,7 @@ func _wall_jump(wall_dir: int):
 	
 	wall_jump_timer = wall_jump_time
 	SfxManager.play(jump_sfx)
+	_squash(Vector2(1.3, 0.7))
 
 func die():
 	if is_dead:
@@ -140,3 +160,7 @@ func die():
 	death_rotation_speed = randf_range(400, 1000) * (1.0 if randf() > 0.5 else -1.0)
 	
 	SfxManager.play(death_sfx)
+
+func _squash(new_scale):
+	squash_timer = squash_time
+	anim_sprite.scale = new_scale
