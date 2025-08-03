@@ -60,6 +60,7 @@ func _process(delta):
 	
 	if not was_on_floor and is_on_floor():
 		_squash(Vector2(1.2, 0.8))
+		CameraManager.start_shake(0.5, 0.2)
 
 func _physics_process(delta):
 	if is_dead:
@@ -129,6 +130,7 @@ func _jump():
 	velocity.y = -jump_force
 	
 	SfxManager.play(jump_sfx)
+	CameraManager.start_shake(0.4, 0.15)
 	_squash(Vector2(1.2, 0.8))
 
 # wall_dir: +1 for left, -1 for right
@@ -141,6 +143,7 @@ func _wall_jump(wall_dir: int):
 	
 	wall_jump_timer = wall_jump_time
 	SfxManager.play(jump_sfx)
+	CameraManager.start_shake(0.4, 0.15)
 	_squash(Vector2(1.3, 0.7))
 
 func die():
@@ -160,6 +163,7 @@ func die():
 	death_rotation_speed = randf_range(400, 1000) * (1.0 if randf() > 0.5 else -1.0)
 	
 	SfxManager.play(death_sfx)
+	CameraManager.start_shake(4, 0.1)
 
 func _squash(new_scale):
 	squash_timer = squash_time
