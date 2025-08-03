@@ -122,8 +122,8 @@ func die():
 	collision_shape.disabled = true
 	
 	velocity = Vector2(
-		randf_range(-300, 300),
-		randf_range(-600, -400)
+		randf_range(100, 200) * (1.0 if randf() > 0.5 else -1.0),
+		randf_range(-400, -200)
 	)
 
 	death_rotation_speed = randf_range(400, 1000) * (1.0 if randf() > 0.5 else -1.0)

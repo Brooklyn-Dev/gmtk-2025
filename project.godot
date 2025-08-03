@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 [autoload]
 
 SceneManager="*res://scenes/scene_manager.tscn"
+BeatManager="*res://scripts/beat_manager.gd"
 
 [dotnet]
 
