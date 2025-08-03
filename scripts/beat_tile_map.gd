@@ -26,19 +26,25 @@ func _on_beat_tick(beat_count):
 			tile_set.set_physics_layer_collision_mask(0, 0)
 
 func _attempt_push_player():
-	if not player_ref:
+	if not player_ref or player_ref.is_dead:
 		return
-	
-	var platform_rect = get_used_rect()
-	var world_rect = Rect2(
-		map_to_local(platform_rect.position),
-		Vector2(platform_rect.size.x * tile_set.tile_size.x, platform_rect.size.y * tile_set.tile_size.y)
-	)
 	
 	var player_rect = Rect2(player_ref.global_position - Vector2(4, 7), Vector2(8, 14))
-	if not world_rect.intersects(player_rect):
-		return
+	
+	var overlapping_tiles = []
+	var used_cells = get_used_cells()
+	
+	for cell_pos in used_cells:
+		var world_pos = map_to_local(cell_pos)
+		var tile_rect = Rect2(world_pos - Vector2(4, 4), Vector2(8, 8))
+		var shrunk_tile = tile_rect.grow(-2)
 		
+		if shrunk_tile.intersects(player_rect):
+			overlapping_tiles.append(cell_pos)
+	
+	if overlapping_tiles.is_empty():
+		return
+	
 	player_ref.global_position.y -= 16
 	player_ref.velocity.y = min(player_ref.velocity.y, 0)
 	
