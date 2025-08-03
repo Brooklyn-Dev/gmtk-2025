@@ -2,7 +2,7 @@ extends Node
 
 signal beat_tick(beat_count)
 
-@export var bpm := 100
+var bpm := 140
 var beat_interval_seconds := 60.0 / bpm
 
 var beat_timer := 0.0
