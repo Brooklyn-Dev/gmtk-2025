@@ -37,6 +37,12 @@ var death_rotation_speed: float
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+func _process(delta):
+	if Input.is_action_just_pressed("reset"):
+		die()
+		await get_tree().create_timer(1.5).timeout
+		SceneManager.restart_current_scene()
+
 func _physics_process(delta):
 	if is_dead:
 		velocity.y += gravity * delta

@@ -13,7 +13,7 @@ func goto_scene(scene: PackedScene):
 	call_deferred("_goto_scene", scene)
 
 func _goto_scene(scene: PackedScene):
-	current_scene.free()	
+	current_scene.free()
 	current_scene = scene.instantiate()
 	get_tree().root.add_child(current_scene)
 

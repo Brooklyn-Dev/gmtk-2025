@@ -45,7 +45,7 @@ func _attempt_push_player():
 	if overlapping_tiles.is_empty():
 		return
 	
-	player_ref.global_position.y -= 16
+	player_ref.global_position.y -= 12
 	player_ref.velocity.y = min(player_ref.velocity.y, 0)
 	
 	if _is_still_overlapping():
