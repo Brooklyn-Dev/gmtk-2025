@@ -7,6 +7,9 @@ extends CharacterBody2D
 
 @onready var collision_shape := $CollisionShape2D
 
+@export var jump_sfx: AudioStream
+@export var death_sfx: AudioStream
+
 @export var speed := 90.0
 @export var acceleration := 20.0
 @export var friction := 1000.0
@@ -107,6 +110,7 @@ func _jump():
 	jump_buffer_timer = 0.0
 	coyote_timer = 0.0
 	velocity.y = -jump_force
+	SfxManager.play(jump_sfx)
 
 # wall_dir: +1 for left, -1 for right
 func _wall_jump(wall_dir: int):
@@ -117,6 +121,7 @@ func _wall_jump(wall_dir: int):
 	velocity.y = -wall_jump_y_speed
 	
 	wall_jump_timer = wall_jump_time
+	SfxManager.play(jump_sfx)
 
 func die():
 	if is_dead:
@@ -133,3 +138,5 @@ func die():
 	)
 
 	death_rotation_speed = randf_range(400, 1000) * (1.0 if randf() > 0.5 else -1.0)
+	
+	SfxManager.play(death_sfx)

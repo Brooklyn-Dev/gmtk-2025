@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnpqt5bi80ant"]
+[gd_scene load_steps=5 format=3 uid="uid://cnpqt5bi80ant"]
 
 [ext_resource type="Script" uid="uid://xekxo3rd3v8l" path="res://scenes/crown/crown.gd" id="1_e4hp3"]
 [ext_resource type="Texture2D" uid="uid://btp8xcv1gmrif" path="res://assets/crown.png" id="1_qnh6f"]
+[ext_resource type="AudioStream" uid="uid://cu1p1tsxt0yba" path="res://assets/crown.wav" id="2_5bvsy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qnh6f"]
 size = Vector2(9, 4)
 
 [node name="Crown" type="Node2D"]
 script = ExtResource("1_e4hp3")
+collect_sfx = ExtResource("2_5bvsy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 10

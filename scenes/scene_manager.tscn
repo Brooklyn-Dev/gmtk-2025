@@ -15,4 +15,4 @@
 
 [node name="SceneManager" type="Node"]
 script = ExtResource("1_we8k5")
-scenes = Array[PackedScene]([ExtResource("2_b81s6"), ExtResource("3_h7lqg"), ExtResource("4_hhobr"), ExtResource("4_h7lqg"), ExtResource("4_wofdf"), ExtResource("5_q7wi7"), ExtResource("10_kad1h"), ExtResource("6_6k21d"), ExtResource("3_2lhpl"), ExtResource("7_cjhpt"), ExtResource("3_ae61e")])
+scenes = Array[PackedScene]([ExtResource("2_b81s6"), ExtResource("3_h7lqg"), ExtResource("4_h7lqg"), ExtResource("5_q7wi7"), ExtResource("6_6k21d"), ExtResource("7_cjhpt"), ExtResource("4_hhobr"), ExtResource("4_wofdf"), ExtResource("10_kad1h"), ExtResource("3_2lhpl"), ExtResource("3_ae61e")])

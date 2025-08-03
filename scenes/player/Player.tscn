@@ -1,8 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://b8jg0t7n3srin"]
+[gd_scene load_steps=18 format=3 uid="uid://b8jg0t7n3srin"]
 
 [ext_resource type="Script" uid="uid://yyljk42nd167" path="res://scenes/player/player.gd" id="1_gfjak"]
+[ext_resource type="AudioStream" uid="uid://bygi7j1pw00rr" path="res://assets/jump.wav" id="2_8qjgm"]
 [ext_resource type="Texture2D" uid="uid://dwbl3jyyj4m06" path="res://assets/player/player_fall.png" id="2_20koh"]
 [ext_resource type="Script" uid="uid://dbiwru47u8mll" path="res://scenes/player/player_animator.gd" id="2_ov1oi"]
+[ext_resource type="AudioStream" uid="uid://c1yxt80d1j71u" path="res://assets/die.wav" id="2_rn7t0"]
 [ext_resource type="Script" uid="uid://j7l1p1g0xir3" path="res://scenes/player/trail_2d.gd" id="3_4kuee"]
 [ext_resource type="Texture2D" uid="uid://b36fxvnj0gsdc" path="res://assets/player/player_idle/player_idle_0.png" id="3_ov1oi"]
 [ext_resource type="Texture2D" uid="uid://bxooiqhqbcbef" path="res://assets/player/player_idle/player_idle_1.png" id="4_rn7t0"]
@@ -77,6 +79,8 @@ size = Vector2(8, 14)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_gfjak")
+jump_sfx = ExtResource("2_8qjgm")
+death_sfx = ExtResource("2_rn7t0")
 
 [node name="PlayerAnimator" type="Node2D" parent="." node_paths=PackedStringArray("anim_sprite", "player")]
 script = ExtResource("2_ov1oi")
