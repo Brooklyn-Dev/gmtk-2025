@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dul8nql045m4b"]
+
+[ext_resource type="Texture2D" uid="uid://cobwq5wvurvtv" path="res://assets/square.png" id="1_anprf"]
+
+[node name="BG" type="Sprite2D"]
+modulate = Color(0.0588235, 0.152941, 0.219608, 1)
+z_index = -100
+scale = Vector2(25.5, 15.5)
+texture = ExtResource("1_anprf")

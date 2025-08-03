@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=4 uid="uid://dlnhr0x713fpv"]
+[gd_scene load_steps=11 format=4 uid="uid://dlnhr0x713fpv"]
 
 [ext_resource type="Texture2D" uid="uid://i62qdqspk6ti" path="res://assets/tilesets/main_tileset.png" id="1_tlu1w"]
 [ext_resource type="Texture2D" uid="uid://dw43gk36yoffc" path="res://assets/tilesets/main_infill_tileset.png" id="2_81wbl"]
 [ext_resource type="PackedScene" uid="uid://b8jg0t7n3srin" path="res://scenes/player/Player.tscn" id="3_ygbil"]
 [ext_resource type="PackedScene" uid="uid://cnpqt5bi80ant" path="res://scenes/crown/crown.tscn" id="4_00wy5"]
 [ext_resource type="PackedScene" uid="uid://be7jf5m1a0tdc" path="res://scenes/spikes/spikes.tscn" id="5_b0o2v"]
+[ext_resource type="PackedScene" uid="uid://dul8nql045m4b" path="res://scenes/bg.tscn" id="6_81wbl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0bbpv"]
 texture = ExtResource("1_tlu1w")
@@ -452,3 +453,5 @@ position = Vector2(56, -2)
 
 [node name="Spikes42" parent="Spikes/Node2D2" instance=ExtResource("5_b0o2v")]
 position = Vector2(64, -2)
+
+[node name="BG" parent="." instance=ExtResource("6_81wbl")]

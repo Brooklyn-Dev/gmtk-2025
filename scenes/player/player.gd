@@ -25,7 +25,7 @@ extends CharacterBody2D
 @export var wall_jump_control_factor := 0.2
 @export var max_wall_slide_speed := 60.0
 
-@export var coyote_time := 0.08
+@export var coyote_time := 0.1
 @export var jump_buffer_time := 0.1
 
 @export var hang_gravity_factor := 0.5

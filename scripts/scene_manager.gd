@@ -3,7 +3,9 @@ extends Node
 @export var scenes: Array[PackedScene] = []
 
 var current_scene = null
-var current_index = 0
+var current_index := 0
+
+var go_to_next_level := true
 
 func _ready():
 	var root = get_tree().root
@@ -13,6 +15,10 @@ func goto_scene(scene: PackedScene):
 	call_deferred("_goto_scene", scene)
 
 func _goto_scene(scene: PackedScene):
+	var index = scenes.find(scene)
+	if index != -1:
+		current_index = index
+		
 	current_scene.free()
 	current_scene = scene.instantiate()
 	get_tree().root.add_child(current_scene)

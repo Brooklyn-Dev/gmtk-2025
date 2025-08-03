@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://chvnn0vmn5e6k"]
+[gd_scene load_steps=10 format=4 uid="uid://chvnn0vmn5e6k"]
 
 [ext_resource type="Texture2D" uid="uid://i62qdqspk6ti" path="res://assets/tilesets/main_tileset.png" id="1_jf6qu"]
 [ext_resource type="Texture2D" uid="uid://dw43gk36yoffc" path="res://assets/tilesets/main_infill_tileset.png" id="2_qy8to"]
 [ext_resource type="PackedScene" uid="uid://b8jg0t7n3srin" path="res://scenes/player/Player.tscn" id="3_1cqgh"]
 [ext_resource type="PackedScene" uid="uid://cnpqt5bi80ant" path="res://scenes/crown/crown.tscn" id="4_ph246"]
+[ext_resource type="PackedScene" uid="uid://dul8nql045m4b" path="res://scenes/bg.tscn" id="5_jf6qu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0bbpv"]
 texture = ExtResource("1_jf6qu")
@@ -179,3 +180,6 @@ position = Vector2(-164, 32)
 
 [node name="Crown" parent="." instance=ExtResource("4_ph246")]
 position = Vector2(168, -56)
+
+[node name="BG" parent="." instance=ExtResource("5_jf6qu")]
+position = Vector2(-3.99999, -4)

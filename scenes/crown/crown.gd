@@ -18,4 +18,7 @@ func _process(delta):
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("Player") and not body.is_dead:
 		SfxManager.play(collect_sfx)
-		SceneManager.goto_next_scene()
+		if SceneManager.go_to_next_level:
+			SceneManager.goto_next_scene()
+		else:
+			SceneManager.goto_scene(SceneManager.scenes[0])
