@@ -2,10 +2,9 @@ extends Node
 
 @export var scenes: Array[PackedScene] = []
 
-var current_scene = null
+var current_scene: Node = null
 var current_index := 0
-
-var go_to_next_level := true
+var load_next_level := true
 
 func _ready():
 	var root = get_tree().root
@@ -13,25 +12,24 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel") and current_index != 0:
-		goto_scene(scenes[0])
+		load_scene(0)
 
-func goto_scene(scene: PackedScene):
-	call_deferred("_goto_scene", scene)
-
-func _goto_scene(scene: PackedScene):
-	var index = scenes.find(scene)
-	if index != -1:
-		current_index = index
-		
-	current_scene.free()
-	current_scene = scene.instantiate()
+func load_scene(index: int):
+	if index < 0 or index >= scenes.size():
+		return
+	
+	if current_scene:
+		current_scene.queue_free()
+	
+	current_scene = scenes[index].instantiate()
 	get_tree().root.add_child(current_scene)
+	current_index = index
 
-func goto_next_scene():
-	current_index += 1
-	if current_index >= scenes.size():
-		current_index = 0
-	goto_scene(scenes[current_index])
+func load_next_scene():
+	var next_index = current_index + 1
+	if next_index >= scenes.size():
+		next_index = 0
+	load_scene(next_index)
 
-func restart_current_scene():
-	goto_scene(scenes[current_index])
+func restart_scene():
+	load_scene(current_index)

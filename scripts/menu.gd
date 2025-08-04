@@ -58,52 +58,52 @@ func switch_panel(to_index):
 	update_button_focus()
 
 func _on_start_button_pressed():
-	SceneManager.go_to_next_level = true
-	SceneManager.goto_next_scene()
+	SceneManager.load_next_level = true
+	SceneManager.load_next_scene()
 
 func _on_quit_button_pressed():
 	get_tree().quit()
 
 func _on_level_1_button_pressed():
-	SceneManager.go_to_next_level = false
+	SceneManager.load_next_level = false
 	switch_panel(1)
 
 func _on_level_2_button_pressed():
-	SceneManager.go_to_next_level = false
+	SceneManager.load_next_level = false
 	switch_panel(2)
 	
 func _on_back_button_pressed():
 	switch_panel(0)
 
 func _on_level_1a_button_pressed():
-	SceneManager.goto_scene(SceneManager.scenes[1])
+	SceneManager.load_scene(1)
 
 func _on_level_1b_button_pressed():
-	SceneManager.goto_scene(SceneManager.scenes[2])
+	SceneManager.load_scene(2)
 
 func _on_level_1c_button_pressed():
-	SceneManager.goto_scene(SceneManager.scenes[3])
+	SceneManager.load_scene(3)
 
 func _on_level_1d_button_pressed():
-	SceneManager.goto_scene(SceneManager.scenes[4])
+	SceneManager.load_scene(4)
 
 func _on_level_1e_button_pressed():
-	SceneManager.goto_scene(SceneManager.scenes[5])
+	SceneManager.load_scene(5)
 
 func _on_level_2a_button_pressed():
-	SceneManager.goto_scene(SceneManager.scenes[6])
+	SceneManager.load_scene(6)
 
 func _on_level_2b_button_pressed():
-	SceneManager.goto_scene(SceneManager.scenes[7])
+	SceneManager.load_scene(7)
 	
 func _on_level_2c_button_pressed():
-	SceneManager.goto_scene(SceneManager.scenes[8])
+	SceneManager.load_scene(8)
 
 func _on_level_2d_button_pressed():
-	SceneManager.goto_scene(SceneManager.scenes[9])
+	SceneManager.load_scene(9)
 
 func _on_level_2e_button_pressed():
-	SceneManager.goto_scene(SceneManager.scenes[10])
+	SceneManager.load_scene(10)
 
 func _on_toggle_sound_button_pressed():
 	if just_muted:
