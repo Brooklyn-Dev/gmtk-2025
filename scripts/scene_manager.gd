@@ -15,11 +15,14 @@ func _process(delta):
 		load_scene(0)
 
 func load_scene(index: int):
+	call_deferred("_load_scene", index)
+
+func _load_scene(index: int):
 	if index < 0 or index >= scenes.size():
 		return
 	
 	if current_scene:
-		current_scene.queue_free()
+		current_scene.free()
 	
 	current_scene = scenes[index].instantiate()
 	get_tree().root.add_child(current_scene)

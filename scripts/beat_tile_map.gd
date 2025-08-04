@@ -4,7 +4,7 @@ extends TileMapLayer
 @export var starts_on := true
 
 var is_on := true
-var player_ref
+var player_ref: CharacterBody2D = null
 
 func _ready():
 	BeatManager.connect("beat_tick", Callable(self, "_on_beat_tick"))

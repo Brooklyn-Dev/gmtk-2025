@@ -53,7 +53,7 @@ func _process(delta: float):
 	if Input.is_action_just_pressed("reset"):
 		die()
 		await get_tree().create_timer(1.5).timeout
-		SceneManager.restart_current_scene()
+		SceneManager.restart_scene()
 	
 	_handle_animation(delta)
 	_handle_landing_detection()
