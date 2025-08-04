@@ -1,59 +1,65 @@
 extends Control
 
 @onready var panels = [
-	$MainVBoxContainer,
-	$Level1VBoxContainer,
-	$Level2VBoxContainer
+	$Main,
+	$Levels
 ]
 
-var current_panel_index = 0
-var selected_index := 0
+var panel_buttons = []
 
-var is_muted := false
-var just_muted := false
+var current_panel_index := 0
+var selected_index := 0
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
-	for i in range(panels.size()):
-		panels[i].visible = i == current_panel_index
-	selected_index = 0
+	for panel in panels:
+		var buttons = []
+		get_buttons_recursive(panel, buttons)
+		panel_buttons.append(buttons)
+	
+	show_panel(0)
 	update_button_focus()
+
+func get_buttons_recursive(node: Node, buttons: Array):
+	for child in node.get_children():
+		if child is Button:
+			buttons.append(child)
+		elif child.get_child_count() > 0:
+			get_buttons_recursive(child, buttons)
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_down") or event.is_action_pressed("ui_right"):
-		selected_index = (selected_index + 1) % get_current_buttons().size()
-		update_button_focus()
+		move_selection(1)
 	elif event.is_action_pressed("ui_up") or event.is_action_pressed("ui_left"):
-		selected_index = (selected_index - 1) % get_current_buttons().size()
-		update_button_focus()
+		move_selection(-1)
 	elif event.is_action_pressed("ui_accept"):
-		press_selected_button()
+		_press_selected_button()
 
-func get_current_buttons():
-	return panels[current_panel_index].get_children()
+func move_selection(delta: int):
+	var buttons = panel_buttons[current_panel_index]
+	selected_index = (selected_index + delta) % buttons.size()
+	update_button_focus()
 
 func update_button_focus():
-	var buttons = get_current_buttons()
-	for i in range(buttons.size()):
-		buttons[i].focus_mode = Control.FOCUS_NONE
+	var buttons = panel_buttons[current_panel_index]
+	for btn in buttons:
+		btn.focus_mode = Control.FOCUS_NONE
+		btn.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	
 	var btn = buttons[selected_index]
 	btn.focus_mode = Control.FOCUS_ALL
+	btn.mouse_filter = Control.MOUSE_FILTER_STOP
 	btn.grab_focus()
-	
-	for button in get_current_buttons():
-		button.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
-func press_selected_button():
-	var btn = get_current_buttons()[selected_index]
+func _press_selected_button():
+	var btn = panel_buttons[current_panel_index][selected_index]
 	btn.emit_signal("pressed")
 
-func switch_panel(to_index):
-	if to_index == current_panel_index:
-		return
-	panels[current_panel_index].visible = false
-	current_panel_index = to_index
-	panels[current_panel_index].visible = true
+func show_panel(index: int):
+	for i in range(panels.size()):
+		panels[i].visible = i == index
+	current_panel_index = index
 	selected_index = 0
 	update_button_focus()
 
@@ -61,54 +67,45 @@ func _on_start_button_pressed():
 	SceneManager.load_next_level = true
 	SceneManager.load_next_scene()
 
+func _on_levels_button_pressed():
+	SceneManager.load_next_level = false
+	show_panel(1)
+
+func _on_sound_button_toggled(toggled_on: bool):
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), toggled_on)
+	
 func _on_quit_button_pressed():
 	get_tree().quit()
 
-func _on_level_1_button_pressed():
-	SceneManager.load_next_level = false
-	switch_panel(1)
-
-func _on_level_2_button_pressed():
-	SceneManager.load_next_level = false
-	switch_panel(2)
-	
 func _on_back_button_pressed():
-	switch_panel(0)
+	show_panel(0)
 
-func _on_level_1a_button_pressed():
+func _on_1a_button_pressed():
 	SceneManager.load_scene(1)
 
-func _on_level_1b_button_pressed():
+func _on_1b_button_pressed():
 	SceneManager.load_scene(2)
 
-func _on_level_1c_button_pressed():
+func _on_1c_button_pressed():
 	SceneManager.load_scene(3)
 
-func _on_level_1d_button_pressed():
+func _on_1d_button_pressed():
 	SceneManager.load_scene(4)
 
-func _on_level_1e_button_pressed():
+func _on_1e_button_pressed():
 	SceneManager.load_scene(5)
 
-func _on_level_2a_button_pressed():
+func _on_2a_button_pressed():
 	SceneManager.load_scene(6)
 
-func _on_level_2b_button_pressed():
+func _on_2b_button_pressed():
 	SceneManager.load_scene(7)
 	
-func _on_level_2c_button_pressed():
+func _on_2c_button_pressed():
 	SceneManager.load_scene(8)
 
-func _on_level_2d_button_pressed():
+func _on_2d_button_pressed():
 	SceneManager.load_scene(9)
 
-func _on_level_2e_button_pressed():
+func _on_2e_button_pressed():
 	SceneManager.load_scene(10)
-
-func _on_toggle_sound_button_pressed():
-	if just_muted:
-		just_muted = false
-		return
-	is_muted = !is_muted
-	just_muted = true
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), is_muted)

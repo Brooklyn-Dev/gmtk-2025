@@ -78,6 +78,12 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Crown" type="Sprite2D" parent="."]
+position = Vector2(358, 65)
+rotation = -0.261799
+scale = Vector2(6, 6)
+texture = ExtResource("3_11y2r")
+
 [node name="Controls" type="RichTextLabel" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -104,13 +110,7 @@ position = Vector2(216, 365)
 scale = Vector2(4, 4)
 texture = ExtResource("3_o0tnf")
 
-[node name="Crown" type="Sprite2D" parent="."]
-position = Vector2(358, 65)
-rotation = -0.261799
-scale = Vector2(6, 6)
-texture = ExtResource("3_11y2r")
-
-[node name="MainVBoxContainer" type="VBoxContainer" parent="."]
+[node name="Main" type="VBoxContainer" parent="."]
 layout_mode = 2
 offset_left = 439.0
 offset_top = 233.0
@@ -122,7 +122,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 16
 
-[node name="StartButton" type="Button" parent="MainVBoxContainer"]
+[node name="StartButton" type="Button" parent="Main"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -135,7 +135,7 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_yt8fu")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_upctu")
 text = "start"
 
-[node name="Level1Button" type="Button" parent="MainVBoxContainer"]
+[node name="LevelsButton" type="Button" parent="Main"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -146,35 +146,24 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_7ycwl")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_b6cxs")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_aaywf")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_upctu")
-text = "level 1"
+text = "levels"
 
-[node name="Level2Button" type="Button" parent="MainVBoxContainer"]
+[node name="SoundButton" type="Button" parent="Main"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_colors/font_focus_color = Color(0.984314, 0.87451, 0.419608, 1)
-theme_override_fonts/font = ExtResource("2_upctu")
-theme_override_font_sizes/font_size = 56
-theme_override_styles/focus = SubResource("StyleBoxEmpty_7ycwl")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_b6cxs")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_aaywf")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_upctu")
-text = "level 2"
-
-[node name="ToggleSoundButton" type="Button" parent="MainVBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_colors/font_focus_color = Color(0.984314, 0.87451, 0.419608, 1)
+theme_override_colors/font_pressed_color = Color(0.984314, 0.87451, 0.419608, 1)
 theme_override_fonts/font = ExtResource("2_upctu")
 theme_override_font_sizes/font_size = 56
 theme_override_styles/focus = SubResource("StyleBoxEmpty_rtd1e")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_o0tnf")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_jmdev")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_11y2r")
+toggle_mode = true
 text = "toggle sound"
 
-[node name="QuitButton" type="Button" parent="MainVBoxContainer"]
+[node name="QuitButton" type="Button" parent="Main"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -187,18 +176,38 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_jmdev")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_11y2r")
 text = "quit"
 
-[node name="Level1VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Levels" type="Control" parent="."]
 visible = false
 layout_mode = 2
+anchors_preset = 0
 offset_left = 495.0
 offset_top = 233.0
-offset_right = 657.0
-offset_bottom = 613.0
+offset_right = 535.0
+offset_bottom = 273.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Levels"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 142.0
+offset_bottom = 294.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Level1VBoxContainer" type="VBoxContainer" parent="Levels/HBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 16
 
-[node name="Level1aButton" type="Button" parent="Level1VBoxContainer"]
+[node name="1aButton" type="Button" parent="Levels/HBoxContainer/Level1VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -209,9 +218,9 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_6c8sk")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_4umqm")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_pp5m5")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_upctu")
-text = "level 1a"
+text = "1a"
 
-[node name="Level1bButton" type="Button" parent="Level1VBoxContainer"]
+[node name="1bButton" type="Button" parent="Levels/HBoxContainer/Level1VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -222,9 +231,9 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_6c8sk")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_4umqm")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_pp5m5")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_upctu")
-text = "level 1b"
+text = "1b"
 
-[node name="Level1cButton" type="Button" parent="Level1VBoxContainer"]
+[node name="1cButton" type="Button" parent="Levels/HBoxContainer/Level1VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -235,9 +244,9 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_6c8sk")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_4umqm")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_pp5m5")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_upctu")
-text = "level 1c"
+text = "1c"
 
-[node name="Level1dButton" type="Button" parent="Level1VBoxContainer"]
+[node name="1dButton" type="Button" parent="Levels/HBoxContainer/Level1VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -248,9 +257,9 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_6c8sk")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_4umqm")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_pp5m5")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_upctu")
-text = "level 1d"
+text = "1d"
 
-[node name="Level1eButton" type="Button" parent="Level1VBoxContainer"]
+[node name="1eButton" type="Button" parent="Levels/HBoxContainer/Level1VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -261,10 +270,85 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_6c8sk")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_4umqm")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_pp5m5")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_upctu")
-text = "level 1e"
+text = "1e"
 
-[node name="BackButton" type="Button" parent="Level1VBoxContainer"]
+[node name="Level2VBoxContainer" type="VBoxContainer" parent="Levels/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+
+[node name="2aButton" type="Button" parent="Levels/HBoxContainer/Level2VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_focus_color = Color(0.984314, 0.87451, 0.419608, 1)
+theme_override_fonts/font = ExtResource("2_upctu")
+theme_override_font_sizes/font_size = 56
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6c8sk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_4umqm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_pp5m5")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_upctu")
+text = "2a"
+
+[node name="2bButton" type="Button" parent="Levels/HBoxContainer/Level2VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_focus_color = Color(0.984314, 0.87451, 0.419608, 1)
+theme_override_fonts/font = ExtResource("2_upctu")
+theme_override_font_sizes/font_size = 56
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6c8sk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_4umqm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_pp5m5")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_upctu")
+text = "2b"
+
+[node name="2cButton" type="Button" parent="Levels/HBoxContainer/Level2VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_focus_color = Color(0.984314, 0.87451, 0.419608, 1)
+theme_override_fonts/font = ExtResource("2_upctu")
+theme_override_font_sizes/font_size = 56
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6c8sk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_4umqm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_pp5m5")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_upctu")
+text = "2c"
+
+[node name="2dButton" type="Button" parent="Levels/HBoxContainer/Level2VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_focus_color = Color(0.984314, 0.87451, 0.419608, 1)
+theme_override_fonts/font = ExtResource("2_upctu")
+theme_override_font_sizes/font_size = 56
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6c8sk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_4umqm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_pp5m5")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_upctu")
+text = "2d"
+
+[node name="2eButton" type="Button" parent="Levels/HBoxContainer/Level2VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_focus_color = Color(0.984314, 0.87451, 0.419608, 1)
+theme_override_fonts/font = ExtResource("2_upctu")
+theme_override_font_sizes/font_size = 56
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6c8sk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_4umqm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_pp5m5")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_upctu")
+text = "2e"
+
+[node name="BackButton" type="Button" parent="Levels"]
+layout_mode = 2
+offset_left = 32.0
+offset_top = 330.0
+offset_right = 130.0
+offset_bottom = 380.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_colors/font_focus_color = Color(0.984314, 0.87451, 0.419608, 1)
@@ -276,109 +360,18 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_thu7x")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_11y2r")
 text = "back"
 
-[node name="Level2VBoxContainer" type="VBoxContainer" parent="."]
-visible = false
-layout_mode = 2
-offset_left = 495.0
-offset_top = 233.0
-offset_right = 657.0
-offset_bottom = 613.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/separation = 16
-
-[node name="Level2aButton" type="Button" parent="Level2VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_colors/font_focus_color = Color(0.984314, 0.87451, 0.419608, 1)
-theme_override_fonts/font = ExtResource("2_upctu")
-theme_override_font_sizes/font_size = 56
-theme_override_styles/focus = SubResource("StyleBoxEmpty_6c8sk")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_4umqm")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_pp5m5")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_upctu")
-text = "level 2a"
-
-[node name="Level2bButton" type="Button" parent="Level2VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_colors/font_focus_color = Color(0.984314, 0.87451, 0.419608, 1)
-theme_override_fonts/font = ExtResource("2_upctu")
-theme_override_font_sizes/font_size = 56
-theme_override_styles/focus = SubResource("StyleBoxEmpty_6c8sk")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_4umqm")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_pp5m5")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_upctu")
-text = "level 2b"
-
-[node name="Level2cButton" type="Button" parent="Level2VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_colors/font_focus_color = Color(0.984314, 0.87451, 0.419608, 1)
-theme_override_fonts/font = ExtResource("2_upctu")
-theme_override_font_sizes/font_size = 56
-theme_override_styles/focus = SubResource("StyleBoxEmpty_6c8sk")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_4umqm")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_pp5m5")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_upctu")
-text = "level 2c"
-
-[node name="Level2dButton" type="Button" parent="Level2VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_colors/font_focus_color = Color(0.984314, 0.87451, 0.419608, 1)
-theme_override_fonts/font = ExtResource("2_upctu")
-theme_override_font_sizes/font_size = 56
-theme_override_styles/focus = SubResource("StyleBoxEmpty_6c8sk")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_4umqm")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_pp5m5")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_upctu")
-text = "level 2d"
-
-[node name="Level2eButton" type="Button" parent="Level2VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_colors/font_focus_color = Color(0.984314, 0.87451, 0.419608, 1)
-theme_override_fonts/font = ExtResource("2_upctu")
-theme_override_font_sizes/font_size = 56
-theme_override_styles/focus = SubResource("StyleBoxEmpty_6c8sk")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_4umqm")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_pp5m5")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_upctu")
-text = "level 2e"
-
-[node name="BackButton" type="Button" parent="Level2VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_colors/font_focus_color = Color(0.984314, 0.87451, 0.419608, 1)
-theme_override_fonts/font = ExtResource("2_upctu")
-theme_override_font_sizes/font_size = 56
-theme_override_styles/focus = SubResource("StyleBoxEmpty_5p0sf")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_el213")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_thu7x")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_11y2r")
-text = "back"
-
-[connection signal="pressed" from="MainVBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="MainVBoxContainer/Level1Button" to="." method="_on_level_1_button_pressed"]
-[connection signal="pressed" from="MainVBoxContainer/Level2Button" to="." method="_on_level_2_button_pressed"]
-[connection signal="pressed" from="MainVBoxContainer/ToggleSoundButton" to="." method="_on_toggle_sound_button_pressed"]
-[connection signal="pressed" from="MainVBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="Level1VBoxContainer/Level1aButton" to="." method="_on_level_1a_button_pressed"]
-[connection signal="pressed" from="Level1VBoxContainer/Level1bButton" to="." method="_on_level_1b_button_pressed"]
-[connection signal="pressed" from="Level1VBoxContainer/Level1cButton" to="." method="_on_level_1c_button_pressed"]
-[connection signal="pressed" from="Level1VBoxContainer/Level1dButton" to="." method="_on_level_1d_button_pressed"]
-[connection signal="pressed" from="Level1VBoxContainer/Level1eButton" to="." method="_on_level_1e_button_pressed"]
-[connection signal="pressed" from="Level1VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="Level2VBoxContainer/Level2aButton" to="." method="_on_level_2a_button_pressed"]
-[connection signal="pressed" from="Level2VBoxContainer/Level2bButton" to="." method="_on_level_2b_button_pressed"]
-[connection signal="pressed" from="Level2VBoxContainer/Level2cButton" to="." method="_on_level_2c_button_pressed"]
-[connection signal="pressed" from="Level2VBoxContainer/Level2dButton" to="." method="_on_level_2d_button_pressed"]
-[connection signal="pressed" from="Level2VBoxContainer/Level2eButton" to="." method="_on_level_2e_button_pressed"]
-[connection signal="pressed" from="Level2VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Main/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Main/LevelsButton" to="." method="_on_levels_button_pressed"]
+[connection signal="toggled" from="Main/SoundButton" to="." method="_on_sound_button_toggled"]
+[connection signal="pressed" from="Main/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Levels/HBoxContainer/Level1VBoxContainer/1aButton" to="." method="_on_1a_button_pressed"]
+[connection signal="pressed" from="Levels/HBoxContainer/Level1VBoxContainer/1bButton" to="." method="_on_1b_button_pressed"]
+[connection signal="pressed" from="Levels/HBoxContainer/Level1VBoxContainer/1cButton" to="." method="_on_1c_button_pressed"]
+[connection signal="pressed" from="Levels/HBoxContainer/Level1VBoxContainer/1dButton" to="." method="_on_1d_button_pressed"]
+[connection signal="pressed" from="Levels/HBoxContainer/Level1VBoxContainer/1eButton" to="." method="_on_1e_button_pressed"]
+[connection signal="pressed" from="Levels/HBoxContainer/Level2VBoxContainer/2aButton" to="." method="_on_2a_button_pressed"]
+[connection signal="pressed" from="Levels/HBoxContainer/Level2VBoxContainer/2bButton" to="." method="_on_2b_button_pressed"]
+[connection signal="pressed" from="Levels/HBoxContainer/Level2VBoxContainer/2cButton" to="." method="_on_2c_button_pressed"]
+[connection signal="pressed" from="Levels/HBoxContainer/Level2VBoxContainer/2dButton" to="." method="_on_2d_button_pressed"]
+[connection signal="pressed" from="Levels/HBoxContainer/Level2VBoxContainer/2eButton" to="." method="_on_2e_button_pressed"]
+[connection signal="pressed" from="Levels/BackButton" to="." method="_on_back_button_pressed"]
