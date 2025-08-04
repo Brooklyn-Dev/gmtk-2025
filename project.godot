@@ -22,6 +22,11 @@ MusicManager="*res://scripts/music_manager.gd"
 SfxManager="*res://scripts/sfx_manager.gd"
 CameraManager="*res://scripts/camera_manager.gd"
 
+[display]
+
+window/size/mode=3
+window/stretch/mode="viewport"
+
 [dotnet]
 
 project/assembly_name="gmtk-2025"
