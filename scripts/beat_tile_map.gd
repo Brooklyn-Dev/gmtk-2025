@@ -51,7 +51,7 @@ func _attempt_push_player():
 	if _is_still_overlapping():
 		player_ref.die()
 		await get_tree().create_timer(1.5).timeout
-		SceneManager.restart_current_scene()
+		SceneManager.restart_scene()
 	
 func _is_still_overlapping():
 	for cell_pos in get_used_cells():
