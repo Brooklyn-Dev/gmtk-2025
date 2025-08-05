@@ -1,41 +1,32 @@
-# gmtk-2025
+# Crown Trials
 
-## Initial post
-**GAME IDEA - IDK yet**
+A precision platformer where each level is repeated, but increasingly more difficult. Features 2 levels with 5 loops each. Prove your worth to inherit the crown.
 
-**Game Genre**: 2D Precision Platformer 
+Made in 2 days and a bit for GMTK Game Jam 2025 with the theme "loop".
 
-**Description**: Platformer where you play the same level, getting harder each loop. There will be 5 loops per level.
+## How to play
 
-**Features**: 
-- Tight platforming (wall jumps, coyote time, jump buffering, etc)
-- Loop-based levels getting harder each iteration
-- Each level will introduce unique gimmicks
-- Potentially a speedrun timer
+- ARROWS - Move left and right
+- Z - Jump
+- R - Reset
+- ESC - Menu
 
-**Gameplay**: There will be 3-5 levels overall. Each level is short but it loops when you beat it. Use precise platforming to break out of the loop.
+This is a precision platformer and it gets challenging. Difficulty is part of the fun, so please consider that before rating, even if it's not your usual style of gameplay.
 
-**Game Engine**: Godot 4.4 
+## Features
 
-**Experience**: 7 game jams using Unity and Godot
+- Advanced platformer controller - Acceleration, friction, variable jump height, coyote time, jump buffering, hang-time, wall-jumps, reduced air control, fall speed limit.
+- 2 levels with 5 "loops" each, with increasing difficulty and variety
+- Pixel-art 8x8 tileset and 8x16 character animations (all made by me!)
+- Looping music (made by me!)
+- Highly polished - Sound effects, squash 'n' stretch, camera shake, death "animation", player trail
+- Hazardous spikes and platforms that toggle on/off at set intervals
+- Visually aesthetic main menu, showing controls and buttons to start, select levels, toggle sound and quit
 
-**Other Notes**: This is for the GMTK 2025 game jam with the theme "loop". Probably gonna do 16x16 pixel art.
+## Credits
 
-## Update post
-**10-HOUR UPDATE - IDK yet**
+All art and music made by myself.
 
-**GitHub Repo**: https://github.com/Brooklyn-Dev/gmtk-2025
-
-**Itch.io link**: N/A
-
-**New Features**
-- Responsive player movement with acceleration, friction and reduced air control
-- Variable jump height, coyote time, jump buffering, jump hang time
-- Wall jumps, wall sliding, limit fall speed
-- Basic scene management and menu
-- Player animations (idle, run, jump, fall, slide)
-- Player trail (used for visualizing jump path, may or may not keep)
-
-**Most challenging**: Nailing the player movement. It doesn't look that impressive, but you can feel the difference.
-
-Next up: Environment tileset, levels, polish
+- Tools: [Godot](https://godotengine.org/), [Piskel](https://www.piskelapp.com/), [LMMS](https://lmms.io/), [jsfxr](https://sfxr.me/)
+- Palette: [Endesga 36](https://lospec.com/palette-list/endesga-36)
+- Font: [m6x11](https://managore.itch.io/m6x11) by Daniel Linssen
